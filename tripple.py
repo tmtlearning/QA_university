@@ -1,17 +1,41 @@
-def to_triple(string):
+def tripple_to_dict(string):
 	dic = {}
-	temp = []
+	pref = []
+	index = []
+	value = []
 
 	string = string.replace('$', '')
 	arr = string.split(';')
 	arr = list(map(lambda x: x.split('='), arr))
 	for n in arr:
-		n[0] = n[0].split('.') 
+		n[0] = n[0].split('.')
+	del(arr[-1])
 	for x in range(len(arr)):
-		print(x)
-	print(arr)
-	
-	
+		n = arr[x]
+		pref.append(n[0][0])
+		index.append(n[0][1])
+		value.append(n[1])
+	# tup = list(zip(index, value))
+	dic = dict(zip(pref, list(zip(index, value))))
+	# dic = sorted(dic.items())
+	return dic
 
 
-to_triple('$D.L=14.0;$E.D=20.5;')
+def dict_to_tripple(dict):
+	string = ''
+	for x in dict:
+		string += '$' + x[0] + '.' + x[1][0] + '=' + x[1][1] + ';'
+	return string
+
+	
+def add_to_tripple(item, string):
+	dic = tripple_to_dict(string)
+	new_item = tripple_to_dict(item)
+	res = dict(list(dic.items()) + list(new_item.items()))
+	res = sorted(res.items())
+	# result = dict_to_tripple(dic)
+	return dict_to_tripple(res)
+
+
+# print(dict_to_tripple(tripple_to_dict('$D.L=14.0;$E.D=20.5;')))
+print(add_to_tripple('A.M=12.3;', '$D.L=14.0;$E.D=20.5;'))
