@@ -34,9 +34,20 @@ def add_to_tripple(item, string):
 	res = dict(list(dic.items()) + list(new_item.items()))
 	# res = sorted(res.items())
 	# result = dict_to_tripple(dic)
-	return __dict_to_tripple(res)
+	# return __dict_to_tripple(res)
 
+def trpsort(tripple):
+	dict = __tripple_to_dict(tripple)
+	res = sorted(dict.items())
+	return res
+
+def delete_by_key(key, tripple):
+	dict = __tripple_to_dict(tripple)
+	res = {k: v for k, v in dict.items() if key not in k}
+	return res
 
 # print(dict_to_tripple(tripple_to_dict('$D.L=14.0;$E.D=20.5;')))
-print(add_to_tripple('Z.Q=12.5;A.M=12.5;Q.T=12.5;', '$D.L=14.0;$E.D=20.5;$D.L=14.4;'))
+# print(add_to_tripple('Z.Q=12.5;A.M=12.5;Q.T=12.5;', '$D.L=14.0;$E.D=20.5;$D.L=14.4;'))
 # print(tripple_to_dict('$D.L=14.0;$E.D=20.5;'))
+# print(trpsort('Z.Q=12.5;A.M=12.5;Q.T=12.5;$D.L=14.0;$E.D=20.5;$D.L=14.4;'))
+print(delete_by_key('D', 'Z.Q=12.5;A.M=12.5;Q.T=12.5;$D.L=14.0;$E.D=20.5;$D.L=14.4;'))
