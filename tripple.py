@@ -1,4 +1,4 @@
-def tripple_to_dict(string):
+def __tripple_to_dict(string):
 	dic = {}
 	pref = []
 	index = []
@@ -21,7 +21,7 @@ def tripple_to_dict(string):
 	return dic
 
 
-def dict_to_tripple(dict):
+def __dict_to_tripple(dict):
 	string = ''
 	for x in dict:
 		string += '$' + x[0] + '.' + x[1] + '=' + dict[x] + ';'
@@ -29,14 +29,14 @@ def dict_to_tripple(dict):
 
 
 def add_to_tripple(item, string):
-	dic = tripple_to_dict(string)
-	new_item = tripple_to_dict(item)
+	dic = __tripple_to_dict(string)
+	new_item = __tripple_to_dict(item)
 	res = dict(list(dic.items()) + list(new_item.items()))
 	# res = sorted(res.items())
 	# result = dict_to_tripple(dic)
-	return dict_to_tripple(res)
+	return __dict_to_tripple(res)
 
 
 # print(dict_to_tripple(tripple_to_dict('$D.L=14.0;$E.D=20.5;')))
-print(add_to_tripple('D.L=12.3;D.L=12.5;', '$D.L=14.0;$E.D=20.5;'))
+print(add_to_tripple('Z.Q=12.5;A.M=12.5;Q.T=12.5;', '$D.L=14.0;$E.D=20.5;$D.L=14.4;'))
 # print(tripple_to_dict('$D.L=14.0;$E.D=20.5;'))
